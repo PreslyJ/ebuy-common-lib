@@ -4,15 +4,18 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.kidz.model.Role;
+import com.kidz.cart.model.Role;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Account {
+public class Account implements Serializable{
 
-    @Id
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -33,7 +36,7 @@ public class Account {
 
     @NotNull
     private boolean locked = false;
-
+    
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
@@ -43,6 +46,11 @@ public class Account {
 
     }
 
+    public Account(String userName,String password) {
+    	this.username=userName;
+    	this.password=password;
+    }
+    
     public Account(Account account){
         this.id = account.getId();
         this.username = account.getUsername();
