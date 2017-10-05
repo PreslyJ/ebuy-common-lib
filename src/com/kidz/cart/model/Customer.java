@@ -1,5 +1,8 @@
 package com.kidz.cart.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,13 +17,13 @@ import com.kidz.login.model.Account;
 
 
 @Entity
-public class Customer extends Account {
+public class Customer implements Serializable{
 		
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 104564654646L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long customerId;
+	private long id;
 	
 	private String firstName;
 
@@ -32,6 +35,12 @@ public class Customer extends Account {
 	
 	private String address;
 	
+	private Date registeredDate;
+	
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+    @JoinColumn
+	private Account account;
+	
 	@ColumnDefault(value="false")
 	private boolean enableld=false;
 	
@@ -39,17 +48,17 @@ public class Customer extends Account {
 	@JoinColumn
     @JsonIgnoreProperties("customer")
 	private Cart cart;
-	
-	public Customer(String email,String password){
-		super(email,password);
+
+	public Customer(){
+		this.registeredDate=new Date();
 	}
-		
-	public long getCustomerId() {
-		return customerId;
+    
+	public long getId() {
+		return id;
 	}
 
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public boolean isEnableld() {
@@ -63,14 +72,10 @@ public class Customer extends Account {
 	public Cart getCart() {
 		return cart;
 	}
-
-
-
+	
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -111,6 +116,21 @@ public class Customer extends Account {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+
+	public Date getRegisteredDate() {
+		return registeredDate;
+	}
+
+	public void setRegisteredDate(Date registeredDate) {
+		this.registeredDate = registeredDate;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
 	
 }
