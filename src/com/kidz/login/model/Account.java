@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.kidz.cart.model.Role;
+import com.kidz.login.model.Role;
 
 import java.io.Serializable;
 import java.util.HashSet;
