@@ -17,8 +17,8 @@ public class Cart implements Serializable{
     private Long id;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @Fetch(value=FetchMode.SUBSELECT)
-    @JsonIgnoreProperties("cart")
+/*    @Fetch(value=FetchMode.SUBSELECT)
+*/    @JsonIgnoreProperties("cart")
     private List<CartItem> cartItems;
 
     @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
