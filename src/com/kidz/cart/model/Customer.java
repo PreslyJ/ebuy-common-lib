@@ -33,18 +33,22 @@ public class Customer implements Serializable{
 	
 	private String phoneNumber;
 	
-	private String address;
+	private String address1;
+	
+	private String address2;
+	
+	private String address3;
 	
 	private Date registeredDate;
 	
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn
 	private Account account;
 	
 	@ColumnDefault(value="false")
 	private boolean enableld=false;
 	
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn
     @JsonIgnoreProperties("customer")
 	private Cart cart;
@@ -109,14 +113,6 @@ public class Customer implements Serializable{
 		this.phoneNumber = phoneNumber;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public Date getRegisteredDate() {
 		return registeredDate;
 	}
@@ -132,5 +128,30 @@ public class Customer implements Serializable{
 	public void setAccount(Account account) {
 		this.account = account;
 	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public String getAddress3() {
+		return address3;
+	}
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
+	}
+	
 	
 }

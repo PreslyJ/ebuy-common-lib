@@ -2,9 +2,8 @@ package com.kidz.cart.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,9 +18,9 @@ public class Cart implements Serializable{
     @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 /*    @Fetch(value=FetchMode.SUBSELECT)
 */    @JsonIgnoreProperties("cart")
-    private List<CartItem> cartItems;
+    private List<CartItem> cartItems=new ArrayList<>();
 
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn
     @JsonIgnoreProperties("cart")
     private Customer customer;

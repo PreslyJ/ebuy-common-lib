@@ -20,7 +20,7 @@ public class CartItem implements Serializable{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "cartId")
+    @JoinColumn
     @JsonIgnoreProperties("cartItems")
     private Cart cart;
 
@@ -63,4 +63,13 @@ public class CartItem implements Serializable{
 	public void setTotalPriceDouble(double totalPriceDouble) {
 		this.totalPriceDouble = totalPriceDouble;
 	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
+	}
+	
 }

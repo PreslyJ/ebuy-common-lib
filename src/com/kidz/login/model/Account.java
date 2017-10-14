@@ -20,12 +20,11 @@ public class Account implements Serializable{
     private Long id;
 
     @NotNull
-    @Size(min = 8, max = 255, message = "Username have to be grater than 8 characters")
     @Column(unique = true)
     private String username;
 
     @NotNull
-    @Size(min = 8, max = 255, message = "Password have to be grater than 8 characters")
+    @Size(min = 6, max = 255, message = "Password have to be grater than 6 characters")
     private String password;
 
     @NotNull
