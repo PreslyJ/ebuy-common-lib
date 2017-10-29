@@ -22,10 +22,10 @@ public class ProductTag implements Serializable{
 
     @NotEmpty(message = "Can not be null")
     private String tagContents;
-    
+    /*
     @ManyToOne
     @JoinColumn(name = "productId")
-    private Product product;
+    private Product product;*/
 
 	public Long getTagId() {
 		return tagId;
@@ -42,12 +42,12 @@ public class ProductTag implements Serializable{
 	public void setTagContents(String tagContents) {
 		this.tagContents = tagContents;
 	}
-
+/*
 	public Product getProduct() {
 		return product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
-	}
+	}*/
 }

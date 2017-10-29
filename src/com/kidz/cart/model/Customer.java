@@ -41,14 +41,14 @@ public class Customer implements Serializable{
 	
 	private Date registeredDate;
 	
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
     @JoinColumn
 	private Account account;
 	
 	@ColumnDefault(value="false")
 	private boolean enableld=false;
 	
-    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    @OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn
     @JsonIgnoreProperties("customer")
 	private Cart cart;

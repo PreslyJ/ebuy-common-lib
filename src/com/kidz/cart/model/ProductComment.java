@@ -23,10 +23,10 @@ public class ProductComment implements Serializable {
     private String commentCotents;
 
     private int commentStarts;
-
+/*
     @ManyToOne
     @JoinColumn(name = "productId")
-    private Product product;
+    private Product product;*/
     
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -66,14 +66,14 @@ public class ProductComment implements Serializable {
 		this.commentStarts = commentStarts;
 	}
 
-	public Product getProduct() {
+	/*public Product getProduct() {
 		return product;
 	}
 
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
+*/
 	public Date getCommentDate() {
 		return commentDate;
 	}

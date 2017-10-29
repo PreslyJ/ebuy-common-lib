@@ -36,7 +36,7 @@ public class Account implements Serializable{
     @NotNull
     private boolean locked = false;
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
     private Set<Role> roles=new HashSet<>();

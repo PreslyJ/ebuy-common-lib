@@ -2,6 +2,7 @@ package com.kidz.cart.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,59 +20,85 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Category implements Serializable {
 
-    private static final long serialVersionUID = -992248230930241426L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-
-    @NotEmpty(message = "The name must not be null")
-    @Length(max = 255, message = "The field must be less than 255 characters")
-    @Column(unique=true)
-    private String name;
-    
-    @Lob
-    private String description;
-    
-    @OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER,mappedBy="category")
-	@JsonIgnoreProperties("category")
-    private List<SubCategory> subCategories=new ArrayList<SubCategory>();
-
-	public Long getId() {
-		return Id;
-	}
-
-	public void setId(Long id) {
-		Id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public List<SubCategory> getSubCategories() {
-		return subCategories;
-	}
-
-	public void setSubCategories(List<SubCategory> subCategories) {
-		this.subCategories = subCategories;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    
-    
+	    private static final long serialVersionUID = -992248230930241426L;
+	
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long Id;
+	
+	    @NotEmpty(message = "The name must not be null")
+	    @Length(max = 255, message = "The field must be less than 255 characters")
+	    @Column(unique=true)
+	    private String name;
+	    
+	    @Lob
+	    private String description;
+	    
+	    @OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER,mappedBy="category")
+		@JsonIgnoreProperties("category")
+	    private List<SubCategory> subCategories=new ArrayList<SubCategory>();
+	
+	    private String status;
+	
+	    private Date lupDate;
+	    
+	    
+	    
+	    public Category(){
+	    	
+	    	this.lupDate=new Date();
+	    	this.status="active";
+	    }
+	    
+	    
+		public Long getId() {
+			return Id;
+		}
+	
+		public void setId(Long id) {
+			Id = id;
+		}
+	
+		public String getName() {
+			return name;
+		}
+	
+		public void setName(String name) {
+			this.name = name;
+		}
+	
+		public String getDescription() {
+			return description;
+		}
+	
+		public void setDescription(String description) {
+			this.description = description;
+		}
+	
+		public List<SubCategory> getSubCategories() {
+			return subCategories;
+		}
+	
+		public void setSubCategories(List<SubCategory> subCategories) {
+			this.subCategories = subCategories;
+		}
+	
+		public String getStatus() {
+			return status;
+		}
+	
+		public void setStatus(String status) {
+			this.status = status;
+		}
+	
+		public Date getLupDate() {
+			return lupDate;
+		}
+	
+		public void setLupDate(Date lupDate) {
+			this.lupDate = lupDate;
+		}
+	    
+	    
+	
 }

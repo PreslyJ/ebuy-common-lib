@@ -18,6 +18,7 @@ import org.hibernate.annotations.ColumnDefault;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Item implements Serializable {
 
@@ -34,7 +35,7 @@ public class Item implements Serializable {
 	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	@JoinColumn
 	@JsonIgnoreProperties("items")
-	private Product product;
+	private SubCategory subCategory;
 	
 	private int minAge;
 	
@@ -47,6 +48,7 @@ public class Item implements Serializable {
 	private String size;
 	
 	@Lob
+	@JsonIgnore	
 	private String otherProperties;
 	
 	@Lob
@@ -60,6 +62,8 @@ public class Item implements Serializable {
 	private boolean isFeatured=false;
 	
 	private Date lupDate;
+	
+	private String status;
 	
 	public Item(){
 		this.lupDate=new Date();
@@ -90,13 +94,6 @@ public class Item implements Serializable {
 		this.description = description;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
 
 	public int getMinAge() {
 		return minAge;
@@ -177,5 +174,25 @@ public class Item implements Serializable {
 	public void setLupDate(Date lupDate) {
 		this.lupDate = lupDate;
 	}
+
+
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+
+	public void setSubCategory(SubCategory subCategory) {
+		this.subCategory = subCategory;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 }

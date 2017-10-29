@@ -2,6 +2,7 @@ package com.kidz.cart.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -41,10 +42,20 @@ public class SubCategory implements Serializable{
 	@JsonIgnoreProperties("subCategories")
 	private Category category;
 
-    @OneToMany(cascade=CascadeType.MERGE,fetch=FetchType.EAGER,mappedBy="subCategory")
+    @OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER,mappedBy="subCategory")
     @JsonIgnoreProperties("subCategory")
-    private List<Product> products=new ArrayList<Product>();
+    private List<Item> items=new ArrayList<Item>();
 	
+    private String status;
+    
+    private Date lupDate;
+    
+    public SubCategory(){
+    	
+    	this.lupDate=new Date();
+    	this.status="active";
+    }
+    
 	public Long getId() {
 		return id;
 	}
@@ -77,12 +88,29 @@ public class SubCategory implements Serializable{
 		this.category = category;
 	}
 
-	public List<Product> getProducts() {
-		return products;
+	public List<Item> getItems() {
+		return items;
 	}
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Date getLupDate() {
+		return lupDate;
+	}
+
+	public void setLupDate(Date lupDate) {
+		this.lupDate = lupDate;
+	}
+
 	
 }
