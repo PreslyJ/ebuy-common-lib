@@ -2,8 +2,6 @@ package com.kidz.cart.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
 import org.hibernate.annotations.ColumnDefault;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,7 +28,7 @@ public class Item implements Serializable {
 	
 	private String description;
 	
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn
 	@JsonIgnoreProperties("items")
 	private SubCategory subCategory;

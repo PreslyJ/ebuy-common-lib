@@ -26,7 +26,6 @@ public class Category implements Serializable {
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long Id;
 	
-	    @NotEmpty(message = "The name must not be null")
 	    @Length(max = 255, message = "The field must be less than 255 characters")
 	    @Column(unique=true)
 	    private String name;
@@ -34,7 +33,7 @@ public class Category implements Serializable {
 	    @Lob
 	    private String description;
 	    
-	    @OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER,mappedBy="category")
+	    @OneToMany(fetch=FetchType.EAGER,mappedBy="category")
 		@JsonIgnoreProperties("category")
 	    private List<SubCategory> subCategories=new ArrayList<SubCategory>();
 	

@@ -29,7 +29,6 @@ public class SubCategory implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    @NotEmpty(message = "The name must not be null")
     @Length(max = 255, message = "The field must be less than 255 characters")
     @Column(unique=true)
 	private String name;
@@ -37,12 +36,12 @@ public class SubCategory implements Serializable{
     @Lob
 	private String description;
 	
-    @ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+    @ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn
 	@JsonIgnoreProperties("subCategories")
 	private Category category;
 
-    @OneToMany(cascade={CascadeType.MERGE,CascadeType.REMOVE},fetch=FetchType.EAGER,mappedBy="subCategory")
+    @OneToMany(fetch=FetchType.EAGER,mappedBy="subCategory")
     @JsonIgnoreProperties("subCategory")
     private List<Item> items=new ArrayList<Item>();
 	
