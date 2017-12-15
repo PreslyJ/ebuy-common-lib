@@ -36,6 +36,10 @@ public class Account implements Serializable{
     @NotNull
     private boolean locked = false;
     
+    private String firstName;
+
+    private String surname;
+    
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "UserRole", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
@@ -114,5 +118,21 @@ public class Account implements Serializable{
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
 }
