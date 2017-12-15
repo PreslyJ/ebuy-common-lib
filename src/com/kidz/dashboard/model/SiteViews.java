@@ -1,4 +1,4 @@
-package com.kidz.dashboard.domain;
+package com.kidz.dashboard.model;
 
 import java.io.Serializable;
 import java.util.Date;
