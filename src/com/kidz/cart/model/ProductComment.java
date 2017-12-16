@@ -2,8 +2,6 @@ package com.kidz.cart.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,15 +16,11 @@ public class ProductComment implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long commentId;
+    private Long id;
 
-    private String commentCotents;
+    private String review;
 
-    private int commentStarts;
-/*
-    @ManyToOne
-    @JoinColumn(name = "productId")
-    private Product product;*/
+    private int stars;
     
     @ManyToOne
     @JoinColumn(name = "customerId")
@@ -34,24 +28,28 @@ public class ProductComment implements Serializable {
 
     private Date commentDate;
 
-	public Long getCommentId() {
-		return commentId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCommentId(Long commentId) {
-		this.commentId = commentId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getCommentCotents() {
-		return commentCotents;
+	public String getReview() {
+		return review;
 	}
 
-	public void setCommentCotents(String commentCotents) {
-		this.commentCotents = commentCotents;
+	public void setReview(String review) {
+		this.review = review;
 	}
 
-	public int getCommentStarts() {
-		return commentStarts;
+	public int getStars() {
+		return stars;
+	}
+
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
 
 	public Customer getCustomer() {
@@ -62,18 +60,6 @@ public class ProductComment implements Serializable {
 		this.customer = customer;
 	}
 
-	public void setCommentStarts(int commentStarts) {
-		this.commentStarts = commentStarts;
-	}
-
-	/*public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-*/
 	public Date getCommentDate() {
 		return commentDate;
 	}
@@ -82,5 +68,8 @@ public class ProductComment implements Serializable {
 		this.commentDate = commentDate;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
    
 }
